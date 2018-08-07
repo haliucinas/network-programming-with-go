@@ -20,6 +20,7 @@ func init() {
 	Register("IPMask", &cmds.IPMaskCommand{})
 	Register("LookupHost", &cmds.LookupHostCommand{})
 	Register("LookupPort", &cmds.LookupPortCommand{})
+	Register("HeadInfo", &cmds.HeadInfoCommand{})
 }
 
 func main() {
