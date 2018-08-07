@@ -7,11 +7,19 @@ import (
 	"strings"
 )
 
-func main() {
-	reader := bufio.NewReader(os.Stdin)
+var (
+	reader *bufio.Reader
+)
+
+func init() {
+	reader = bufio.NewReader(os.Stdin)
+
 	Register("exit", &ExitCommand{})
 	Register("parse", &ParseIPCommand{})
-	fmt.Println(commands)
+	Register("mask", &IPMaskCommand{})
+}
+
+func main() {
 	for {
 		fmt.Print(">> ")
 		text, err := reader.ReadString('\n')

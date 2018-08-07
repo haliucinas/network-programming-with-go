@@ -2,8 +2,8 @@ package main
 
 import (
 	"os"
-	"net"
 	"fmt"
+	"net"
 )
 
 var commands = map[string]Command{}
@@ -14,6 +14,11 @@ type Command interface {
 
 func Register(name string, command Command) {
 	commands[name] = command
+}
+
+type ExitCommand struct{}
+func (p *ExitCommand) Execute(args []string) {
+	os.Exit(0)
 }
 
 type ParseIPCommand struct{}
@@ -31,7 +36,25 @@ func (p *ParseIPCommand) Execute(args []string) {
 	}
 }
 
-type ExitCommand struct{}
-func (p *ExitCommand) Execute(args []string) {
-	os.Exit(0)
+type IPMaskCommand struct{}
+func (p *IPMaskCommand) Execute(args []string) {
+	if len(args) != 1 {
+		fmt.Println("Usage: mask <address>")
+		return
+	}
+	dotAddr := args[0]
+	addr := net.ParseIP(dotAddr)
+	if addr == nil {
+		fmt.Println("Invalid address")
+		return
+	}
+	mask := addr.DefaultMask()
+	network := addr.Mask(mask)
+	ones, bits := mask.Size()
+	fmt.Println("Address is", addr.String(),
+		"\nMask length is", bits,
+		"\nLeading ones count is", ones,
+		"\nMask is (hex)", mask.String(),
+		"\nNetwork is", network.String(),
+	)
 }
