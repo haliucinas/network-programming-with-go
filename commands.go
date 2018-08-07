@@ -1,5 +1,7 @@
 package main
 
+import "strings"
+
 var commands = map[string]Command{}
 
 type Command interface {
@@ -7,5 +9,5 @@ type Command interface {
 }
 
 func Register(name string, command Command) {
-	commands[name] = command
+	commands[strings.ToLower(name)] = command
 }

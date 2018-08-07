@@ -34,7 +34,7 @@ func main() {
 		splits := strings.Split(text, " ")
 		name := splits[0]
 		args := splits[1:]
-		if command := commands[name]; command == nil {
+		if command := commands[strings.ToLower(name)]; command == nil {
 			fmt.Println("No such command found")
 		} else {
 			command.Execute(args)
