@@ -17,6 +17,7 @@ func init() {
 	Register("exit", &ExitCommand{})
 	Register("parse", &ParseIPCommand{})
 	Register("mask", &IPMaskCommand{})
+	Register("lookup", &HostLookupCommand{})
 }
 
 func main() {
