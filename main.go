@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"bufio"
 	"strings"
+	cmds "bitbucket.org/Haliucinas/network-programming-with-go/commands"
 )
 
 var (
@@ -14,10 +15,11 @@ var (
 func init() {
 	reader = bufio.NewReader(os.Stdin)
 
-	Register("exit", &ExitCommand{})
-	Register("parse", &ParseIPCommand{})
-	Register("mask", &IPMaskCommand{})
-	Register("lookup", &HostLookupCommand{})
+	Register("Exit", &cmds.ExitCommand{})
+	Register("ParseIP", &cmds.ParseIPCommand{})
+	Register("IPMask", &cmds.IPMaskCommand{})
+	Register("LookupHost", &cmds.LookupHostCommand{})
+	Register("LookupPort", &cmds.LookupPortCommand{})
 }
 
 func main() {
