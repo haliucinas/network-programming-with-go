@@ -15,12 +15,16 @@ var (
 func init() {
 	reader = bufio.NewReader(os.Stdin)
 
-	Register("Exit", &cmds.ExitCommand{})
-	Register("ParseIP", &cmds.ParseIPCommand{})
-	Register("IPMask", &cmds.IPMaskCommand{})
-	Register("LookupHost", &cmds.LookupHostCommand{})
-	Register("LookupPort", &cmds.LookupPortCommand{})
-	Register("HeadInfo", &cmds.HeadInfoCommand{})
+	cmds.Register("Exit", &cmds.ExitCommand{})
+	cmds.Register("lr", &cmds.ListRoutineCommand{})
+	cmds.Register("sr", &cmds.StopRoutineCommand{})
+	cmds.Register("ParseIP", &cmds.ParseIPCommand{})
+	cmds.Register("IPMask", &cmds.IPMaskCommand{})
+	cmds.Register("LookupHost", &cmds.LookupHostCommand{})
+	cmds.Register("LookupPort", &cmds.LookupPortCommand{})
+	cmds.Register("HeadInfo", &cmds.HeadInfoCommand{})
+	cmds.Register("TCPDaytimeServer", &cmds.TCPDaytimeServerCommand{})
+	cmds.Register("TCPDaytimeClient", &cmds.TCPDaytimeClientCommand{})
 }
 
 func main() {
@@ -35,7 +39,7 @@ func main() {
 		splits := strings.Split(text, " ")
 		name := splits[0]
 		args := splits[1:]
-		if command := commands[strings.ToLower(name)]; command == nil {
+		if command := cmds.GetCommand(name); command == nil {
 			fmt.Println("No such command found")
 		} else {
 			command.Execute(args)
