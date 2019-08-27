@@ -6,6 +6,7 @@ import (
 )
 
 type IPMaskCommand struct{}
+
 func (p *IPMaskCommand) Execute(args []string) {
 	if len(args) != 1 {
 		fmt.Println("Usage: IPMask <address>")

@@ -6,6 +6,7 @@ import (
 )
 
 type LookupPortCommand struct{}
+
 func (p *LookupPortCommand) Execute(args []string) {
 	if len(args) != 2 {
 		fmt.Println("Usage: PortLookup <network type> <service>")

@@ -2,12 +2,13 @@ package commands
 
 import (
 	"fmt"
+	"io/ioutil"
 	"net"
 	"time"
-	"io/ioutil"
 )
 
 type TCPDaytimeServerCommand struct{}
+
 func (p *TCPDaytimeServerCommand) Execute(args []string) {
 	if len(args) != 1 {
 		fmt.Println("Usage: TCPDaytimeServer <host:port>")
@@ -27,7 +28,7 @@ func (p *TCPDaytimeServerCommand) Execute(args []string) {
 	}
 
 	stopch := RegisterRoutine("TCPDaytimeServer")
-	go func () {
+	go func() {
 		for {
 			select {
 			case <-stopch:
@@ -48,6 +49,7 @@ func (p *TCPDaytimeServerCommand) Execute(args []string) {
 }
 
 type TCPDaytimeClientCommand struct{}
+
 func (p *TCPDaytimeClientCommand) Execute(args []string) {
 	if len(args) != 1 {
 		fmt.Println("Usage: TCPDaytimeClient <host:port>")

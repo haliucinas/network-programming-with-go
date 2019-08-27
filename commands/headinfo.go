@@ -1,14 +1,15 @@
 package commands
 
 import (
-	"os"
 	"fmt"
-	"net"
 	"io/ioutil"
+	"net"
+	"os"
 	"strings"
 )
 
 type HeadInfoCommand struct{}
+
 func (p *HeadInfoCommand) Execute(args []string) {
 	if len(os.Args) != 1 {
 		fmt.Println("Usage: HeadInfo <host:port>")

@@ -1,11 +1,11 @@
 package main
 
 import (
-	"os"
-	"fmt"
+	cmds "bitbucket.org/haliucinas/network-programming-with-go/commands"
 	"bufio"
+	"fmt"
+	"os"
 	"strings"
-	cmds "bitbucket.org/Haliucinas/network-programming-with-go/commands"
 )
 
 var (

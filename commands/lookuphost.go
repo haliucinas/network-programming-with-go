@@ -6,6 +6,7 @@ import (
 )
 
 type LookupHostCommand struct{}
+
 func (p *LookupHostCommand) Execute(args []string) {
 	if len(args) != 1 {
 		fmt.Println("Usage: HostLookup <hostname>")

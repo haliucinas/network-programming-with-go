@@ -2,9 +2,10 @@ package commands
 
 import (
 	"fmt"
-	)
+)
 
 type ListRoutineCommand struct{}
+
 func (p *ListRoutineCommand) Execute(args []string) {
 	switch len(routines) {
 	case 0:
@@ -20,6 +21,7 @@ func (p *ListRoutineCommand) Execute(args []string) {
 }
 
 type StopRoutineCommand struct{}
+
 func (p *StopRoutineCommand) Execute(args []string) {
 	if len(args) != 1 {
 		fmt.Println("Usage: sr <routine name>")
@@ -33,4 +35,3 @@ func (p *StopRoutineCommand) Execute(args []string) {
 		delete(routines, name)
 	}
 }
-
