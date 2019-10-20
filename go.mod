@@ -1,3 +1,3 @@
-module bitbucket.org/haliucinas/network-programming-with-go
+module github.com/haliucinas/network-programming-with-go
 
 go 1.13.3
